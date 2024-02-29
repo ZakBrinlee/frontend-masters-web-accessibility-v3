@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { IconButton } from '@chakra-ui/react';
 
 import { IconLeftArrow, IconRightArrow, IconHamburgerMenu, IconShoppingCart } from './Icons';
+import { Product } from '../types';
 
 type BannerProps = {
 	shouldAnimate?: boolean;
@@ -122,11 +123,18 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 const Logo = () => <div className="mx-auto font-bold text-black font-serif text-xl">Background</div>;
 
 type ProductHeaderProps = {
-	shoppingCartItems: any[];
+	shoppingCartItems: Product[];
 	shouldAnimate?: boolean;
 };
 
 const ProductHeader = ({ shoppingCartItems, shouldAnimate }: ProductHeaderProps) => {
+	const [cartAnnouncementMessage, setCartAnnouncementMessage] = useState<string>('')
+	useEffect(() => {
+		if (shoppingCartItems?.length > 0) {
+			setCartAnnouncementMessage(`Cart, contains ${shoppingCartItems?.length} items`)
+		}
+	}, [shoppingCartItems])
+
 	return (
 		<>
 			<Banner shouldAnimate={shouldAnimate} />
@@ -136,11 +144,19 @@ const ProductHeader = ({ shoppingCartItems, shouldAnimate }: ProductHeaderProps)
 				</IconButton>
 				<Logo />
 				<a href="#" className="block min-w-[40px] h-auto mt-4" aria-label="">
+					{shoppingCartItems?.length > 0 && (
+						<span className="badge">
+							{shoppingCartItems.length}
+						</span>
+					)}
 					<IconShoppingCart />
 					<span className="sr-only">
 						<p>Cart, contains {shoppingCartItems?.length === 1 ? 'item' : 'items'}</p>
 					</span>
 				</a>
+				<div role="status" className='sr-only'>
+					{cartAnnouncementMessage}
+				</div>
 			</header>
 		</>
 	);

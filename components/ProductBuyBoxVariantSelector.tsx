@@ -5,7 +5,7 @@ const ProductBuyBoxVariantSelector = ({ Product }) => {
 	return (
 		<div id="buybox-variant-selector" className="my-6">
 			<div className="text-sm mb-2">
-				<span className="font-bold inline-block mr-1">Color:</span>
+				<h2 className="font-bold inline-block mr-1">Color:</h2>
 				<span className="inline-block">{selectedColor}</span>
 			</div>
 			<div data-id="colorTile" role="radiogroup" className="flex gap-4">

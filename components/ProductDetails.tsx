@@ -44,6 +44,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			</h1>
 			<div className="flex flex-row mt-2" data-id="buyboxRating">
 				<div className="css-0">
+					<h2 className='sr-only'>Reviews</h2>
 					<a href="#the-wall">
 						{hasReviews && (
 							<>
@@ -69,9 +70,9 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			<hr className="my-6" />
 			<div>
 				<div>
-					<span data-id="pricing">
+					<h2 data-id="pricing">
 						<span className="font-bold text-xl">{product.price}</span>
-					</span>
+					</h2>
 				</div>
 				<div className="button">
 					<div className="flex flex-row">
@@ -83,7 +84,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			<ProductBuyBoxVariantSelector Product={product} />
 			<div className="flex flex-row items-center">
 				<div className="flex flex-col">
-					<p className="font-bold">Quantity</p>
+					<h2 className="font-bold">Quantity</h2>
 					<div className="flex flex-row items-start mt-2 gap-1">
 						<button
 							className="rounded-sm border-[1px] border-color-[#ccc] border-solid flex w-[32px] h-[38px] bg-slate-300 items-center text-center"
@@ -127,14 +128,15 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 				</div>
 			</div>
 			<div className="flex flex-col mt-4 mr-4">
-				<div
+				<button
 					className="bg-black text-white font-bold py-2 mt-2 border-[1px] rounded-[100px] text-center"
-					onClick={() => onAddToCart(product)}>
+					onClick={() => onAddToCart(product)}
+				>
 					Add to Cart
-				</div>
-				<div className="bg-white text-black font-bold py-2 mt-2 border-[1px] border-black rounded-[100px] hover:bg-black hover:text-white text-center">
+				</button>
+				<button className="bg-white text-black font-bold py-2 mt-2 border-[1px] border-black rounded-[100px] hover:bg-black hover:text-white text-center">
 					Add to Wishlist
-				</div>
+				</button>
 			</div>
 		</div>
 	);

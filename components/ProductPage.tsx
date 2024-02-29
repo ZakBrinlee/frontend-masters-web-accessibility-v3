@@ -14,7 +14,7 @@ type ProductPageProps = {
 };
 
 const ProductPage = ({ productData, shouldAnimate = false }: ProductPageProps) => {
-	const [shoppingCartItems, updateShoppingCartItems] = useState<any>(null);
+	const [shoppingCartItems, updateShoppingCartItems] = useState<Product[]>([]);
 	const [isFullscreenShowing, setFullscreenShowing] = useState<boolean>(false);
 
 	const onFullscreen = () => {
@@ -23,6 +23,11 @@ const ProductPage = ({ productData, shouldAnimate = false }: ProductPageProps) =
 	const onFullscreenClose = () => {
 		setFullscreenShowing(false);
 	};
+
+	const onAddToCart = (product: Product) => {
+		const items = [...shoppingCartItems, product];
+		updateShoppingCartItems(items);
+	}
 	return (
 		<ChakraProvider>
 			<div
@@ -58,7 +63,7 @@ const ProductPage = ({ productData, shouldAnimate = false }: ProductPageProps) =
 							/>
 						</div>
 						<div className="col-span-2 px-4 md:px-0">
-							<ProductDetails product={productData} onAddToCart={updateShoppingCartItems} />
+							<ProductDetails product={productData} onAddToCart={onAddToCart} />
 						</div>
 					</div>
 				</div>
